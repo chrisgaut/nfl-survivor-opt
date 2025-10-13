@@ -21,7 +21,7 @@ pff_rankings <- read_csv("data/pff-power-rankings.csv")
 
 # load custom constraints
 constraints <- read_csv("data/constraints.csv",
-                        col_types = list(col_character(), col_double()))
+                        col_types = list(col_character(), col_character(), col_double(), col_character()))
 
 
 
@@ -37,6 +37,14 @@ game_set <- nfl_games %>%
   filter(week > week_completed,
          opponent != "BYE",
          !team %in% picked_teams) %>%
+  anti_join(constraints, by = c("team", "week"))
+
+# filter out opponents (teams selections face) from custom constraints
+game_set <- game_set %>%
+  anti_join(constraints, by = c("opponent", "week"))
+
+# filter out teams (selections) from custom constraints
+game_set <- game_set %>%
   anti_join(constraints, by = c("team", "week"))
 
 # Join power rankings for teams
