@@ -1,9 +1,6 @@
 
 # Script 02: Run Optimization
 
-# TODO:
-# - Allow custom constraints to filter out undesired edges
-
 
 
 
