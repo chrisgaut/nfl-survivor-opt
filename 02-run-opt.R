@@ -41,9 +41,9 @@ mwm <- maxmatching(weighted_graph, weighted = TRUE)
 matching_vector <- mwm$matching
 
 # convert to data frame
-survivor_path <- data.frame(as.list(matching_vector))
+survivor_df <- data.frame(as.list(matching_vector))
 
-survivor_path <- survivor_path %>%
+survivor_df <- survivor_df %>%
   select(contains("week")) %>%
   pivot_longer(cols = starts_with("week"),
                names_to = "week",
