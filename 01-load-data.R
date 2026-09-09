@@ -30,7 +30,9 @@ constraints <- read_csv("data/constraints.csv",
 # 2. Prepare Game Set ----------------------------------------------------------
 
 # Filter out completed weeks, bye weeks, picked teams and custom constraints
-week_completed <- max(picks$week)
+week_completed <- ifelse(
+  nrow(picks) == 0, 0, max(picks$week)
+)
 picked_teams <- picks$team
 
 game_set <- nfl_games %>%
@@ -62,7 +64,4 @@ game_set <- game_set %>%
 # define "strength": difference between team and opponent PFF power rankings
 game_set <- game_set %>%
   mutate(strength = pff_rank_opponent - pff_rank_team)
-
-
-
 
