@@ -1,7 +1,8 @@
 
 # Script 02: Run Optimization
 
-
+# TODO:
+# - Different strength optionalities (i.e. spreads)
 
 
 
@@ -49,7 +50,4 @@ survivor_df <- survivor_df %>%
                names_to = "week",
                values_to = "team") %>%
   mutate(week = substr(week, 6, nchar(week)))
-
-
-
 
