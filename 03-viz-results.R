@@ -39,7 +39,7 @@ survivor_path <- survivor_path %>%
 # bring in strength for survivor path
 survivor_path <- survivor_path %>%
   left_join(select(game_set, week, team, strength), by = c("week", "team")) %>%
-  mutate(strength = replace_na(strength, ""))
+  mutate(strength = replace_na(as.character(strength), ""))
 
 
 
@@ -55,7 +55,7 @@ gt_survivor_path <- gt(survivor_path) %>%
     ) %>%
   tab_source_note(
     source_note = md("*Strength* is defined as the difference between the<br> 
-                     opponent's and team's current PFF power rankings.")
+                     opponent's and team's current ESPN power rankings.")
     ) %>%
   tab_style(
     style = cell_fill(color = "#009900"),
@@ -97,7 +97,4 @@ gt_survivor_table <- gt(survivor_table) %>%
     title = md("**NFL Survivor Table**"),
     subtitle = "The optimal remaining path to survival"
   )
-
-
-
 
